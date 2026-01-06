@@ -1,0 +1,68 @@
+.task-manager {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.connection-status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.connection-status.connected {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.connection-status.disconnected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #f5c6cb;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .task-manager {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .header h1 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-manager {
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+}

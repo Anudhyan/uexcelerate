@@ -1,0 +1,71 @@
+.task-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 0;
+}
+
+.filter-tab {
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6c757d;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.filter-tab:hover {
+  color: #495057;
+}
+
+.filter-tab.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+.task-count {
+  display: inline-block;
+  background: #e9ecef;
+  color: #6c757d;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  margin-left: 8px;
+}
+
+.filter-tab.active .task-count {
+  background: #667eea;
+  color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .task-filters {
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter-tab {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .task-count {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-tab {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}

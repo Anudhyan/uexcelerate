@@ -1,0 +1,80 @@
+.task-form {
+  background: #f8f9fa;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border: 2px solid #e9ecef;
+}
+
+.task-form h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .task-form {
+    padding: 20px;
+  }
+
+  .task-form h2 {
+    font-size: 1.25rem;
+  }
+}

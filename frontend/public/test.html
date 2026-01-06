@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Connection Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-item {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .pending { background-color: #fff3cd; border-color: #ffeaa7; }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Backend Connection Diagnostic</h1>
+    
+    <button onclick="runAllTests()">Run All Tests</button>
+    
+    <div id="test1" class="test-item pending">
+        <h3>Test 1: Backend API Health Check</h3>
+        <p id="test1-status">Not tested yet...</p>
+        <pre id="test1-result"></pre>
+    </div>
+    
+    <div id="test2" class="test-item pending">
+        <h3>Test 2: Fetch Tasks API</h3>
+        <p id="test2-status">Not tested yet...</p>
+        <pre id="test2-result"></pre>
+    </div>
+    
+    <div id="test3" class="test-item pending">
+        <h3>Test 3: WebSocket Connection</h3>
+        <p id="test3-status">Not tested yet...</p>
+        <pre id="test3-result"></pre>
+    </div>
+
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script>
+        const API_URL = 'http://localhost:5000';
+        
+        async function test1() {
+            const div = document.getElementById('test1');
+            const status = document.getElementById('test1-status');
+            const result = document.getElementById('test1-result');
+            
+            try {
+                status.textContent = 'Testing...';
+                div.className = 'test-item pending';
+                
+                const response = await fetch(`${API_URL}/`);
+                const data = await response.json();
+                
+                status.textContent = `✅ Success! Backend is running on ${API_URL}`;
+                result.textContent = JSON.stringify(data, null, 2);
+                div.className = 'test-item success';
+            } catch (error) {
+                status.textContent = `❌ Failed: ${error.message}`;
+                result.textContent = `Error: ${error}\n\nPossible issues:\n- Backend not running\n- Wrong URL\n- CORS issue`;
+                div.className = 'test-item error';
+            }
+        }
+        
+        async function test2() {
+            const div = document.getElementById('test2');
+            const status = document.getElementById('test2-status');
+            const result = document.getElementById('test2-result');
+            
+            try {
+                status.textContent = 'Testing...';
+                div.className = 'test-item pending';
+                
+                const response = await fetch(`${API_URL}/api/tasks`);
+                const data = await response.json();
+                
+                status.textContent = `✅ Success! Found ${data.length} tasks`;
+                result.textContent = JSON.stringify(data, null, 2);
+                div.className = 'test-item success';
+            } catch (error) {
+                status.textContent = `❌ Failed: ${error.message}`;
+                result.textContent = `Error: ${error}`;
+                div.className = 'test-item error';
+            }
+        }
+        
+        function test3() {
+            const div = document.getElementById('test3');
+            const status = document.getElementById('test3-status');
+            const result = document.getElementById('test3-result');
+            
+            status.textContent = 'Connecting...';
+            div.className = 'test-item pending';
+            
+            const socket = io(API_URL, {
+                transports: ['websocket', 'polling'],
+            });
+            
+            let log = '';
+            
+            socket.on('connect', () => {
+                log += `✅ WebSocket Connected!\n`;
+                log += `Socket ID: ${socket.id}\n`;
+                log += `Transport: ${socket.io.engine.transport.name}\n`;
+                
+                status.textContent = '✅ WebSocket Connected!';
+                result.textContent = log;
+                div.className = 'test-item success';
+                
+                setTimeout(() => socket.disconnect(), 2000);
+            });
+            
+            socket.on('connect_error', (error) => {
+                log += `❌ Connection Error: ${error.message}\n`;
+                status.textContent = '❌ WebSocket Failed';
+                result.textContent = log;
+                div.className = 'test-item error';
+            });
+            
+            socket.on('disconnect', (reason) => {
+                log += `Disconnected: ${reason}\n`;
+                result.textContent = log;
+            });
+            
+            // Timeout after 10 seconds
+            setTimeout(() => {
+                if (!socket.connected) {
+                    socket.disconnect();
+                    log += '\n❌ Connection timeout after 10 seconds';
+                    status.textContent = '❌ Connection Timeout';
+                    result.textContent = log;
+                    div.className = 'test-item error';
+                }
+            }, 10000);
+        }
+        
+        async function runAllTests() {
+            await test1();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await test2();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            test3();
+        }
+        
+        // Auto-run tests on page load
+        window.onload = () => {
+            runAllTests();
+        };
+    </script>
+</body>
+</html>

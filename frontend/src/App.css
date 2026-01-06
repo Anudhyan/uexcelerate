@@ -1,0 +1,11 @@
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .App {
+    padding: 0;
+  }
+}

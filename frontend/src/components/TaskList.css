@@ -1,0 +1,52 @@
+.task-list {
+  margin-top: 20px;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  color: #495057;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.tasks-grid {
+  display: grid;
+  gap: 16px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .empty-state {
+    padding: 40px 20px;
+  }
+
+  .empty-state-icon {
+    font-size: 3rem;
+  }
+
+  .empty-state h3 {
+    font-size: 1.25rem;
+  }
+}
