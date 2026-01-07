@@ -44,47 +44,6 @@ A full-stack task management application that allows users to create, read, upda
 
 ---
 
-## 2. System Architecture
-
-### High-Level Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        Client Layer                          │
-│  ┌───────────────────────────────────────────────────────┐  │
-│  │  React Application (Port 3000)                        │  │
-│  │  - Components (UI Layer)                              │  │
-│  │  - Custom Hooks (Business Logic)                      │  │
-│  │  - Socket.io Client (WebSocket)                       │  │
-│  └───────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-                            │
-                            │ HTTP/WebSocket
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│                      Application Layer                       │
-│  ┌───────────────────────────────────────────────────────┐  │
-│  │  Express.js Server (Port 5000)                        │  │
-│  │  - REST API Routes                                    │  │
-│  │  - Controllers (Business Logic)                       │  │
-│  │  - Socket.io Server (WebSocket)                       │  │
-│  │  - Middleware (CORS, JSON Parser, Error Handler)     │  │
-│  └───────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-                            │
-                            │ SQL Queries
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│                       Database Layer                         │
-│  ┌───────────────────────────────────────────────────────┐  │
-│  │  PostgreSQL Database (Port 5432)                      │  │
-│  │  - Tasks Table                                        │  │
-│  │  - Indexes                                            │  │
-│  │  - Triggers                                           │  │
-│  └───────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
-```
-
 ### Communication Flow
 
 1. **User Action** → React Component
@@ -347,20 +306,6 @@ const {
 ---
 
 ## 6. Real-time Communication
-
-### WebSocket Flow
-
-```
-Client A                Server               Client B
-   │                      │                     │
-   │──Create Task──────>  │                     │
-   │                      │──taskCreated──────> │
-   │<─────Response────────│                     │
-   │                      │                     │
-   │                      │ <──Update Task──────│
-   │<─taskUpdated─────────│                     │
-   │                      │────Response────────>│
-```
 
 ### Event Types
 
