@@ -2,14 +2,13 @@
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
-2. [System Architecture](#system-architecture)
-3. [Database Design](#database-design)
-4. [Backend Implementation](#backend-implementation)
-5. [Frontend Implementation](#frontend-implementation)
-6. [Real-time Communication](#real-time-communication)
-7. [Key Features](#key-features)
-8. [Development Process](#development-process)
-9. [Deployment Considerations](#deployment-considerations)
+2. [Database Design](#database-design)
+3. [Backend Implementation](#backend-implementation)
+4. [Frontend Implementation](#frontend-implementation)
+5. [Real-time Communication](#real-time-communication)
+6. [Key Features](#key-features)
+7. [Development Process](#development-process)
+8. [Deployment Considerations](#deployment-considerations)
 
 ---
 
@@ -56,7 +55,7 @@ A full-stack task management application that allows users to create, read, upda
 
 ---
 
-## 3. Database Design
+## 2. Database Design
 
 ### Schema
 
@@ -93,7 +92,7 @@ CREATE INDEX idx_tasks_created_at ON tasks(created_at);
 
 ---
 
-## 4. Backend Implementation
+## 3. Backend Implementation
 
 ### Project Structure
 
@@ -160,7 +159,7 @@ validateStatus(status)             // Validates status values
 
 ---
 
-## 5. Frontend Implementation
+## 4. Frontend Implementation
 
 ### Project Structure
 
@@ -305,7 +304,7 @@ const {
 
 ---
 
-## 6. Real-time Communication
+## 5. Real-time Communication
 
 ### Event Types
 
@@ -341,7 +340,7 @@ socket.on('taskCreated', (task) => {
 
 ---
 
-## 7. Key Features
+## 6. Key Features
 
 ### 1. Optimistic UI Updates
 
@@ -434,7 +433,7 @@ try {
 
 ---
 
-## 8. Development Process
+## 7. Development Process
 
 ### Phase 1: Planning & Setup
 1. ✅ Analyzed requirements
