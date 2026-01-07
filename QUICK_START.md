@@ -1,101 +1,106 @@
 # Quick Setup Guide
 
+Get the task management application up and running in just a few minutes. This guide assumes you have Node.js and PostgreSQL already installed on your system.
+
 ## Prerequisites
-- Node.js (v14+)
-- PostgreSQL (v12+)
-- npm or yarn
 
-## Quick Start (5 minutes)
+Before you begin, make sure you have the following tools installed:
 
-### 1. Install Backend Dependencies
+- **Node.js** (version 14 or higher) for running JavaScript on the server and building the frontend
+- **PostgreSQL** (version 12 or higher) for the database
+- **npm** or **yarn** - a package manager for installing dependencies (comes with Node.js)
+
+## Installation Steps
+
+### Backend Setup
+
+Navigate to the backend directory and install all required dependencies. This downloads and installs Express, PostgreSQL driver, Socket.io, and other tools needed by the server.
+
 ```bash
 cd backend
 npm install
 ```
 
-### 2. Configure Database
-```bash
-# Copy environment file
-cp .env.example .env
+Configure your database connection by copying the example environment file and editing it with your PostgreSQL credentials.
 
-# Edit .env with your PostgreSQL credentials
-# Update: DB_USER, DB_PASSWORD
+```bash
+cp .env.example .env
 ```
 
-### 3. Setup Database
+Open the `.env` file in a text editor and update these values with your PostgreSQL username and password:
+
+```bash
+DB_USER=postgres
+DB_PASSWORD=your_password
+```
+
+Initialize the database with the required tables and schema:
+
 ```bash
 npm run db:setup
 ```
 
-### 4. Start Backend
+Start the backend server:
+
 ```bash
 npm run dev
 ```
-Backend runs on: http://localhost:5000
 
-### 5. Install Frontend Dependencies (New Terminal)
+The backend is now running on http://localhost:5000. You should see a message confirming the server is running and connected to PostgreSQL.
+
+### Frontend Setup
+
+Open a new terminal (keep the backend running in the first one) and navigate to the frontend directory. Install dependencies and start the development server:
+
 ```bash
 cd frontend
 npm install
-```
-
-### 6. Start Frontend
-```bash
 npm start
 ```
-Frontend runs on: http://localhost:3000
 
-## Verify Installation
+The frontend will automatically open in your browser at http://localhost:3000.
 
-1. Open http://localhost:3000
-2. You should see "Connected" status (green badge)
-3. Create a test task
-4. Open another browser window at http://localhost:3000
-5. Verify real-time updates work
+## Verify Everything is Working
 
-## Common Issues
+Once both servers are running, you should see a green "Connected" status indicator in the application header. Try creating a task by entering a title and clicking "Add Task". The task should appear in the list immediately.
 
-**Database connection error:**
-- Ensure PostgreSQL is running
-- Verify credentials in backend/.env
+To verify real-time updates are working, open the application in a second browser window or tab. Create a task in one window and you should see it appear instantly in the other window without needing to refresh.
 
-**Port already in use:**
-- Change PORT in backend/.env
-- Update proxy in frontend/package.json
+## Common Issues and Solutions
 
-**WebSocket not connecting:**
-- Check backend is running
-- Verify CORS settings
+### Backend Fails to Connect to Database
 
-## Features to Test
+Ensure PostgreSQL is running on your system. Verify that your database credentials in `backend/.env` match your PostgreSQL setup. You can test your connection by trying to connect with `psql -U postgres`.
 
-✅ Create task with title and description
-✅ Filter tasks by status (All/Pending/In Progress/Completed)
-✅ Update task status via dropdown
-✅ Delete task (with confirmation)
-✅ Real-time updates (open in multiple windows)
-✅ Responsive design (resize browser window)
+### Port Already in Use
 
-## Project Structure
+If you get an error saying port 5000 or 3000 is already in use, you can change the port in the backend `.env` file:
 
-```
-uexcelerate/
-├── backend/          # Express API + Socket.io
-├── frontend/         # React application
-├── README.md         # Comprehensive documentation
-├── PROJECT_DOCUMENTATION.md  # Detailed architecture
-└── UI_DESIGN_MOCKUP.html     # Visual design reference
+```bash
+PORT=5001 npm run dev
 ```
 
-## Need Help?
+Then update the frontend to connect to the new port.
 
-- Full documentation: See README.md
-- Architecture details: See PROJECT_DOCUMENTATION.md
-- UI Design: Open UI_DESIGN_MOCKUP.html in browser
+### Application Shows "Disconnected"
 
-## API Testing
+Ensure the backend server is running and has successfully connected to the database. Check your browser's developer console (press F12) for any error messages. The WebSocket connection requires the backend to be running.
 
-Test endpoints with curl:
+## Features to Try
+
+Create a new task with a title and optional description. Filter the tasks using the status tabs to see only tasks in a specific status. Click the dropdown menu on any task to change its status. Delete a task by clicking the trash icon and confirming the deletion. Open the application in two browser windows and create a task in one - it should appear instantly in the other. Resize your browser window to see the responsive design adapt to different screen sizes.
+
+## Project Organization
+
+The project contains a backend directory with the Express server and API, a frontend directory with the React application, comprehensive documentation in README.md and PROJECT_DOCUMENTATION.md, and this quick start guide.
+
+## Where to Find Help
+
+For comprehensive documentation including API endpoint details and architecture explanations, see README.md. For technical details about how the application is built and design decisions, see PROJECT_DOCUMENTATION.md. To test API endpoints manually, you can use curl commands shown in the full documentation.
+
+## Testing with API
+
+You can test the backend API directly using curl from the command line:
 
 ```bash
 # Get all tasks

@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import './TaskForm.css';
 
+// Task creation form component
+// Allows users to create new tasks with title and optional description
 const TaskForm = ({ onSubmit }) => {
+  // State for form inputs
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    // Validate that title is not empty
     if (!title.trim()) {
       alert('Please enter a task title');
       return;
     }
 
+    // Submit task data to parent component
     onSubmit({
       title: title.trim(),
       description: description.trim(),
     });
 
-    // Reset form
+    // Clear form fields after successful submission
     setTitle('');
     setDescription('');
   };
@@ -27,6 +33,7 @@ const TaskForm = ({ onSubmit }) => {
     <form className="task-form" onSubmit={handleSubmit}>
       <h2>Create New Task</h2>
       
+      {/* Title input field - required */}
       <div className="form-group">
         <label htmlFor="title">Title *</label>
         <input
@@ -40,6 +47,7 @@ const TaskForm = ({ onSubmit }) => {
         />
       </div>
 
+      {/* Description input field - optional */}
       <div className="form-group">
         <label htmlFor="description">Description</label>
         <textarea
@@ -50,6 +58,7 @@ const TaskForm = ({ onSubmit }) => {
         />
       </div>
 
+      {/* Submit button */}
       <button type="submit" className="submit-btn">
         Add Task
       </button>
