@@ -96,7 +96,7 @@ Before running this application, make sure you have the following tools installe
 
 **PostgreSQL** (version 12 or higher) is required for the database. Download it from the official PostgreSQL website and follow the installation instructions for your operating system. Make sure the PostgreSQL service is running before you start the application.
 
-## 🚀 Installation
+##  Installation
 
 ### 1. Clone the Repository
 
@@ -144,7 +144,7 @@ This command creates the database, defines the tasks table with appropriate colu
 ### Frontend Setup
 
 In a new terminal, navigate to the frontend directory and install dependencies. These packages include React, React DOM, Socket.io client, and build tools needed to run the development server.
-## 🏃 Running the Application
+##  Running the Application
 
 ### Start Backend Server
 
@@ -316,7 +316,7 @@ Real-time synchronization keeps all connected clients in sync. WebSocket listene
 
 **Error Handling:** Both the backend and frontend handle errors gracefully. The backend returns appropriate HTTP status codes and error messages. The frontend catches errors, rolls back optimistic updates, and displays user-friendly error messages.
 
-## 🧪 Testing the Application
+##  Testing the Application
 
 ### Manual Testing Checklist
 
